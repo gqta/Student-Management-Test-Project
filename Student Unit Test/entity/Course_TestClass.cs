@@ -15,8 +15,6 @@ namespace Student_Unit_Test
        
         [TestCase("1", "Java")]
         [TestCase("", "")]
-        [TestCase(null, null)]
-
         public void TC01_Constructor_InitConstructor(string id, string name)
         {
             Course course = new Course(id,name);
@@ -28,7 +26,6 @@ namespace Student_Unit_Test
 
         [TestCase("1")]
         [TestCase("")]
-        [TestCase(null)]
         public void TC02_CourseId_GetterAndSetter(string id)
         {
 
@@ -41,7 +38,6 @@ namespace Student_Unit_Test
 
         [TestCase("Java")]
         [TestCase("")]
-        [TestCase(null)]
         public void TC03_CourseName_GetterAndSetter(string name)
         {
 
@@ -50,6 +46,20 @@ namespace Student_Unit_Test
 
             Assert.AreEqual(course.Name, name);
 
+        }
+
+        [TestCase("C0001", "Math")]
+        [TestCase("", "")]
+        public void TC04_ToString(string id, string name)
+        {
+
+            Course course = new Course(id, name);
+
+            string expected =  id + "||" + name + "\n";
+
+            Assert.AreEqual(course.ToString(), expected);
+
+            
         }
 
 
