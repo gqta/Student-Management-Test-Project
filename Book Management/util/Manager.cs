@@ -175,7 +175,7 @@ namespace Book_Management.util
             {
                 output += x.Value.ToString();
             }
-            return  String.IsNullOrEmpty(output) ? "\nStudent Course List is Empty!!\n" : "\n"+output+"\n" ;
+            return  String.IsNullOrEmpty(output) ? "\nCourse List is Empty!!\n" : "\n"+output+"\n" ;
 
         }
 

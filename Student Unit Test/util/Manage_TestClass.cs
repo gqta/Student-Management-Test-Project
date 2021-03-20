@@ -234,7 +234,7 @@ namespace Student_Unit_Test.util
         }
 
         [TestCase]
-        public void TC19_GetStudentReport()
+        public void TC19_GetStudentReport_NotEmpty()
         {
             Student student = new Student("HE141010", "Tung", "Ha Vu Son", 21, "havusontung007@gmail.com");
             IManager manager = new Manager();
@@ -246,7 +246,17 @@ namespace Student_Unit_Test.util
         }
 
         [TestCase]
-        public void TC20_GetCourseReport()
+        public void TC20_GetStudentReport_Empty()
+        {
+            IManager manager = new Manager();
+            string output = "";
+            string actual = String.IsNullOrEmpty(output) ? "\nStudent List is Empty!!\n" : "\n" + output + "\n";
+            Assert.AreEqual(actual, manager.GetStudentReport());
+
+        }
+
+        [TestCase]
+        public void TC21_GetCourseReport_NotEmpty()
         {
             Course course = new Course("1", "Discrete Mathematics");
             IManager manager = new Manager();
@@ -257,9 +267,20 @@ namespace Student_Unit_Test.util
 
         }
 
+        [TestCase]
+        public void TC22_GetCourseReport_Empty()
+        {
+            IManager manager = new Manager();
+            string output = "";
+            string actual = String.IsNullOrEmpty(output) ? "\nCourse List is Empty!!\n" : "\n" + output + "\n";
+            Assert.AreEqual(actual, manager.GetCourseReport());
+
+        }
+
+
 
         [TestCase]
-        public void TC21_GetStudentCourseReport()
+        public void TC23_GetStudentCourseReport_NotEmpty()
         {
             Student student = new Student("HE141010", "Tung", "Ha Vu Son", 21, "havusontung007@gmail.com");
             Course course = new Course("1", "Discrete Mathematics");
@@ -269,7 +290,18 @@ namespace Student_Unit_Test.util
             manager.AddStudent(student);
             manager.AddStudentCourse(studentCourse);
             string output = studentCourse.ToString();
-            string actual = String.IsNullOrEmpty(output) ? "\nStudentCourse List is Empty!!\n" : "\n" + output + "\n";
+            string actual = String.IsNullOrEmpty(output) ? "\nStudent Course List is Empty!!\n" : "\n" + output + "\n";
+            Assert.AreEqual(actual, manager.GetStudentCourseReport());
+
+        }
+
+        [TestCase]
+        public void TC23_GetStudentCourseReport_Empty()
+        {
+
+            IManager manager = new Manager();
+            string output = "";
+            string actual = String.IsNullOrEmpty(output) ? "\nStudent Course List is Empty!!\n" : "\n" + output + "\n";
             Assert.AreEqual(actual, manager.GetStudentCourseReport());
 
         }
