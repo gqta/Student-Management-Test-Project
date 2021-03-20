@@ -12,6 +12,11 @@ namespace Book_Management.entity
         private string id;
         private string name;
 
+        public Course()
+        {
+
+        }
+
         public Course(string id, string name)
         {
             this.id = id;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Book_Management.entity
 {
     [Serializable]
-    public class Student : IComparable<Student>
+    public class Student
     {
 
         private string id;
@@ -16,6 +16,10 @@ namespace Book_Management.entity
         private int age;
         private string email;
 
+        public Student()
+        {
+
+        }
         public Student(string id, string firstName, string lastName, int age, string email)
         {
             this.id = id;
@@ -43,9 +47,5 @@ namespace Book_Management.entity
                 "Email: " + Email;
         }
 
-        public int CompareTo(Student other)
-        {
-            return this.id.CompareTo(other.Id);
-        }
     }
 }
