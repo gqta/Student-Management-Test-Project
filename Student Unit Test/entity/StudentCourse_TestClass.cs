@@ -47,7 +47,7 @@ namespace Student_Unit_Test
             StudentCourse stCourse = new StudentCourse();
             stCourse.StudentId = studentId;
 
-            Assert.AreEqual(stCourse.CourseId, courseId);
+            Assert.AreEqual(stCourse.CourseId, studentId);
 
         }
 

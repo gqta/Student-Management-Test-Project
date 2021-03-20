@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Book_Management.util
 {
-    class Manager : IManager
+    public class Manager : IManager
     {
 
         public string studentFile = "student.bin";
@@ -64,7 +64,6 @@ namespace Book_Management.util
 
         public bool AddStudentCourse(StudentCourse studentCourse)
         {
-
             if (lstStudentCourse.ContainsKey(studentCourse.GetHashKey()))
             {
                 throw new ContainKeyException("Id has been existed!!");
@@ -221,6 +220,7 @@ namespace Book_Management.util
             }catch(FileNotFoundException ex)
             {
                 this.lstStudent = new Dictionary<string, Student>();
+                SaveCourseToFile();
                 return -1;
             }
             return this.lstStudent.Count;
@@ -242,6 +242,7 @@ namespace Book_Management.util
             catch (FileNotFoundException ex)
             {
                 this.lstCourse = new Dictionary<string, Course>();
+                SaveStudentCourseToFile();
                 return -1;
             }
             return this.lstCourse.Count;
@@ -261,6 +262,7 @@ namespace Book_Management.util
             catch (FileNotFoundException ex)
             {
                 this.lstStudentCourse = new Dictionary<string, StudentCourse>();
+                SaveStudentToFile();
                 return -1;
             }
             return this.lstStudent.Count;

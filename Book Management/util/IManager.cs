@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Book_Management.util
 {
-    interface IManager
+    public interface IManager
     {
         
 
