@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Book_Management.entity
 {
     [Serializable]
-     public class StudentCourse
+    public class StudentCourse
     {
         private string courseId;
         private string studentId;
@@ -29,7 +29,10 @@ namespace Book_Management.entity
         public string StudentId { get => studentId; set => studentId = value; }
         public string Term { get => term; set => term = value; }
 
-
+        public override string ToString()
+        {
+            return courseId +"||"+studentId;
+        }
         public string GetHashKey()
         {
             return String.Format("{0}_{1}_{2}", courseId.ToLower(), StudentId.ToLower(), term.ToLower());

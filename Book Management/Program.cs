@@ -63,7 +63,7 @@ namespace Book_Management
                     case 3:
                         try
                         {
-                            manager.DeleteCourse(valid.GetString("Student Id: "));
+                            manager.DeleteStudent(valid.GetString("Student Id: "));
                         }
                         catch
                         {

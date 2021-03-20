@@ -128,7 +128,7 @@ namespace Book_Management.util
             }
             else
             {
-                throw new CannotUpdateCourseException("Cannot Delete Course " + course.Name);
+                throw new CannotUpdateCourseException("Cannot Update Course " + course.Name);
             }
             
 
@@ -145,7 +145,7 @@ namespace Book_Management.util
 
             else
             {
-                throw new CannotUpdateStudentException("Cannot Delete Student " + student.LastName);
+                throw new CannotUpdateStudentException("Cannot Update Student " + student.LastName);
             }
 
 
@@ -162,7 +162,7 @@ namespace Book_Management.util
             }
             else
             {
-                throw new CannotUpdateStudentCourseException("Cannot Delete this StudentCourse ");
+                throw new CannotUpdateStudentCourseException("Cannot Update this StudentCourse ");
             }
 
         }
