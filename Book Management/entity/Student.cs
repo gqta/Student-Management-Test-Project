@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Book_Management.entity
 {
+    [Serializable]
     public class Student : IComparable<Student>
     {
 
@@ -29,6 +30,18 @@ namespace Book_Management.entity
         public string LastName { get => lastName; set => lastName = value; }
         public int Age { get => age; set => age = value; }
         public string Email { get => email; set => email = value; }
+
+        public override string ToString()
+        {
+            return
+
+                "\n----------" + Id + "---------\n" +
+                "Id: " + Id + "\n" +
+                "First Name: " + firstName + "\n" +
+                "Last Name: " + lastName + "\n" +
+                "Age: " + Age.ToString() + "\n" +
+                "Email: " + Email;
+        }
 
         public int CompareTo(Student other)
         {

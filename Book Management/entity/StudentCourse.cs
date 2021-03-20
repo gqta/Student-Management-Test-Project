@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Book_Management.entity
 {
+    [Serializable]
     class StudentCourse
     {
         private string courseId;

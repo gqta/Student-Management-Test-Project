@@ -9,10 +9,6 @@ namespace Book_Management.util
 {
     interface IManager
     {
-        int LoadData();
-
-        int SaveData();
-
         
 
         // return true if student is added
@@ -39,10 +35,10 @@ namespace Book_Management.util
         bool EditStudentCourse(StudentCourse studentCourse);
 
         // if id exsited -> delete and return else throw ex;
-        bool DeleteStudent(Student student);
+        bool DeleteStudent(string id);
 
 
-        bool DeleteCourse(Course course);
+        bool DeleteCourse(string id);
 
 
         bool DeleteStudentCourse(StudentCourse studentCourse);
@@ -53,6 +49,17 @@ namespace Book_Management.util
         string GetCourseReport();
 
 
+        int LoadStudentFromFile();
+
+        int SaveStudentToFile();
+
+        int LoadCourseFromFile();
+
+        int SaveCourseToFile();
+
+        int LoadStudentCourseFromFile();
+
+        int SaveStudentCourseToFile();
 
     }
 }
