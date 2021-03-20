@@ -190,7 +190,7 @@ namespace Book_Management.util
             string output = "";
             foreach (var x in lstStudentCourse)
             {
-                output += x.Value.ToString();
+                output += lstStudent[x.Value.StudentId] + " - " + lstStudentCourse[x.Value.CourseId] + " - " + x.Value.Term;
             }
             return String.IsNullOrEmpty(output) ? "\nStudent Course List is Empty!!\n" : "\n" + output + "\n"; ;
 
