@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="entity\Course_TestClass.cs" />
+    <Compile Include="Program_TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="entity\StudentCourse_TestClass.cs" />
     <Compile Include="entity\Student_TestClass.cs" />

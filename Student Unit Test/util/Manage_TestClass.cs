@@ -15,44 +15,61 @@ namespace Student_Unit_Test.util
     {
         [TestCase("1", "Discrete mathematic")]
         [TestCase("", "")]
-        public void TC01_AddCourse(string courseId, string courseName)
+        public void TC01_AddCourse_Success(string courseId, string courseName)
         {
             IManager manager = new Manager();
-            try
-            {
+
 
                 Assert.AreEqual(true, manager.AddCourse(new Course(courseId, courseName)));
-            }
-            catch (Exception e)
-            {
+
                 var ex = Assert.Throws<ContainKeyException>(() => manager.AddCourse(new Course(courseId, courseName)));
                 Assert.That(ex.Message, Is.EqualTo("Id has been existed!!"));
-            }
+            
+        }
+
+        [TestCase("1", "Discrete mathematic")]
+        [TestCase("", "")]
+        public void TC02_AddCourse_Falure(string courseId, string courseName)
+        {
+            IManager manager = new Manager();
+
+            manager.AddCourse(new Course(courseId, courseName));
+
+            var ex = Assert.Throws<ContainKeyException>(() => manager.AddCourse(new Course(courseId, courseName)));
+            Assert.That(ex.Message, Is.EqualTo("Id has been existed!!"));
+
+        }
+
+        [TestCase("1", "Tung", "Ha Vu Son", 21, "havusontung007@gmail.com")]
+        [TestCase("", "", "", 0, "")]
+        public void TC03_AddStudent_Success(string studentId, string studentFirstName, string studentLastName, int studentAge, string email)
+        {
+            IManager manager = new Manager();
+
+            Assert.AreEqual(true, manager.AddStudent(new Student(studentId, studentFirstName, studentLastName, studentAge, email)));
+
 
 
         }
 
         [TestCase("1", "Tung", "Ha Vu Son", 21, "havusontung007@gmail.com")]
         [TestCase("", "", "", 0, "")]
-        public void TC02_AddStudent(string studentId, string studentFirstName, string studentLastName, int studentAge, string email)
+        public void TC04_AddStudent_Failure(string studentId, string studentFirstName, string studentLastName, int studentAge, string email)
         {
             IManager manager = new Manager();
-            try
-            {
-                Assert.AreEqual(true, manager.AddStudent(new Student(studentId, studentFirstName, studentLastName, studentAge, email)));
-            }
-            catch (ContainKeyException ex)
-            {
-                Assert.AreEqual(ex.Message, "Id has been existed!!");
-            }
 
+            manager.AddStudent(new Student(studentId, studentFirstName, studentLastName, studentAge, email));
+
+
+            var ex = Assert.Throws<ContainKeyException>(() => manager.AddStudent(new Student(studentId, studentFirstName, studentLastName, studentAge, email)));
+            Assert.That(ex.Message, Is.EqualTo("Id has been existed!!"));
 
         }
 
 
         [TestCase("1", "1", "blah")]
         [TestCase("", "", "")]
-        public void TC03_AddStudentCourse(string courseId, string studentId, string term)
+        public void TC05_AddStudentCourse(string courseId, string studentId, string term)
         {
             IManager manager = new Manager();
             try
@@ -67,7 +84,6 @@ namespace Student_Unit_Test.util
             {
                 Assert.AreEqual(ex.Message, "Cannot add this studentCourse!!!");
             }
-
 
         }
 

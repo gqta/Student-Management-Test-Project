@@ -80,6 +80,7 @@ namespace Student_Unit_Test
         }
         [TestCase("1", "Tuan", "Hung", 30, "tuanhung@gmail.com")]
         [TestCase("", "", "", 0, "")]
+        [TestCase(null, null, null, 0, null)]
         public void TC07_ToString(string id, string firstName, string lastName, int age, string email)
         {
             Student st = new Student(id, firstName, lastName, age, email);

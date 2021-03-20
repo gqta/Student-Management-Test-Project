@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace Book_Management
 {
-    class Program
+    public class Program
     {
-        static Validation valid = new Validation();
-        static void Main(string[] args)
+
+        public virtual int Run()
         {
+
             Manager manager = new Manager();
 
             string menu = "-------Student Management--------\n" +
@@ -35,109 +36,37 @@ namespace Book_Management
             {
                 int choice = valid.GetInt(menu, 0, 10);
 
+                try
+                {
                 switch (choice)
                 {
                     case 1:
-                        try
-                        {
-                            manager.AddStudent(valid.GetStudent());
-                        }
-                        catch
-                        {
-                            Console.WriteLine();
-                        }
-
+                        manager.AddStudent(valid.GetStudent());
                         break;
-
                     case 2:
-                        try
-                        {
-                            manager.EditStudent(valid.GetStudent());
-                        }
-                        catch
-                        {
-                            Console.WriteLine();
-                        }
-
+                        manager.EditStudent(valid.GetStudent());
                         break;
                     case 3:
-                        try
-                        {
-                            manager.DeleteStudent(valid.GetString("Student Id: "));
-                        }
-                        catch
-                        {
-                            Console.WriteLine();
-                        }
-
+                        manager.DeleteStudent(valid.GetString("Student Id: "));
                         break;
                     case 4:
-                        try
-                        {
-                            manager.AddCourse(valid.GetCourse());
-                        }
-                        catch
-                        {
-                            Console.WriteLine();
-                        }
-
+                        manager.AddCourse(valid.GetCourse());
                         break;
                     case 5:
-                        try
-                        {
-                            manager.EditCourse(valid.GetCourse());
-                        }
-                        catch
-                        {
-                            Console.WriteLine();
-                        }
-
+                        manager.EditCourse(valid.GetCourse());
                         break;
                     case 6:
-                        try
-                        {
-                            manager.DeleteCourse(valid.GetString("Course Id: "));
-                        }
-                        catch
-                        {
-                            Console.WriteLine();
-                        }
+                        manager.DeleteCourse(valid.GetString("Course Id: "));
                         break;
-
-
                     case 7:
-                        try
-                        {
-                            manager.AddStudentCourse(valid.GetStudentCourse());
-                        }
-                        catch
-                        {
-                            Console.WriteLine();
-                        }
+                        manager.AddStudentCourse(valid.GetStudentCourse());
                         break;
-
-
                     case 8:
-                        try
-                        {
-                            manager.EditStudentCourse(valid.GetStudentCourse());
-                        }
-                        catch
-                        {
-                            Console.WriteLine();
-                        }
+                        manager.EditStudentCourse(valid.GetStudentCourse());
                         break;
-
 
                     case 9:
-                        try
-                        {
-                            manager.DeleteStudentCourse(valid.GetStudentCourse());
-                        }
-                        catch
-                        {
-                            Console.WriteLine();
-                        }
+                        manager.DeleteStudentCourse(valid.GetStudentCourse());
                         break;
                     case 10:
                         Console.WriteLine(manager.GetStudentReport());
@@ -148,16 +77,24 @@ namespace Book_Management
                     case 12:
                         Console.WriteLine(manager.GetStudentCourseReport());
                         break;
-
                     case 0:
-                        return;
+                        return 1;
 
                 }
-
+                }
+                catch (Exception ex)
+                {
+                    return -1;
+                }
             }
         }
+        static Validation valid = new Validation();
+        static void Main(string[] args)
+        {
+            new Program().Run();
+        }
 
-        
+
 
 
 
