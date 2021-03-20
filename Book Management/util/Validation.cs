@@ -18,9 +18,11 @@ namespace Book_Management.util
                 try
                 {
                     int result = Int32.Parse(Console.ReadLine());
-                    return result;
+
+                    if ((result) >= min || result <= max) return result;
+                        
                 }
-                catch
+                catch (Exception)
                 {
                     Console.WriteLine("Input must an integer from {0} to {1}", min, max);
                 }
