@@ -13,11 +13,12 @@ namespace Book_Management.util
         {
             while (true)
             {
-                Console.WriteLine(mgs);
+                Console.Write(mgs);
 
                 try
                 {
                     int result = Int32.Parse(Console.ReadLine());
+
                     if ((result) >= min || result <= max) return result;
                         
                 }
@@ -33,7 +34,7 @@ namespace Book_Management.util
         {
             while (true)
             {
-                Console.WriteLine(mgs);
+                Console.Write(mgs);
 
                 string input = Console.ReadLine();
 
