@@ -13,11 +13,12 @@ namespace Book_Management.util
         {
             while (true)
             {
-                Console.WriteLine(mgs);
+                Console.Write(mgs);
 
                 try
                 {
                     int result = Int32.Parse(Console.ReadLine());
+                    return result;
                 }
                 catch
                 {
@@ -27,11 +28,11 @@ namespace Book_Management.util
             }
         }
 
-        public string GetInt(string mgs)
+        public string GetString(string mgs)
         {
             while (true)
             {
-                Console.WriteLine(mgs);
+                Console.Write(mgs);
 
                 string input = Console.ReadLine();
 

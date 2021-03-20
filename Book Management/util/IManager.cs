@@ -45,7 +45,7 @@ namespace Book_Management.util
         bool DeleteCourse(string id);
 
 
-        bool DeleteStudentCourse(string key);
+        bool DeleteStudentCourse(StudentCourse studentCourse);
 
 
         string GetStudentCourseReport();
