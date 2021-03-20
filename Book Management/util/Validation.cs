@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Book_Management.util
 {
-    class Validation
+    public class Validation
     {
         public int GetInt(string mgs, int min, int max)
         {

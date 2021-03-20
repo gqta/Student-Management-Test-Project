@@ -58,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="entity\StudentCourse_TestClass.cs" />
     <Compile Include="entity\Student_TestClass.cs" />
+    <Compile Include="util\Manage_TestClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

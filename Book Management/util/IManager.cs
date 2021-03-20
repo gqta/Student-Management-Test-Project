@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Book_Management.util
 {
-    interface IManager
+    public interface IManager
     {
         
 
@@ -48,18 +48,6 @@ namespace Book_Management.util
         string GetStudentReport();
         string GetCourseReport();
 
-
-        int LoadStudentFromFile();
-
-        int SaveStudentToFile();
-
-        int LoadCourseFromFile();
-
-        int SaveCourseToFile();
-
-        int LoadStudentCourseFromFile();
-
-        int SaveStudentCourseToFile();
 
     }
 }
