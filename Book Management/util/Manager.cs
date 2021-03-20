@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +15,19 @@ namespace Book_Management.util
     class Manager : IManager
     {
 
+        public string studentFile = "student.bin";
+        public string courseFile = "course.bin";
+        public string studentCourseFile = "studentCourse.bin";
+
         private Dictionary<String, Student> lstStudent;
         private Dictionary<String, Course> lstCourse;
         private Dictionary<String, StudentCourse> lstStudentCourse;
 
         public Manager()
         {
+            LoadCourseFromFile();
+            LoadStudentFromFile();
+            LoadStudentCourseFromFile();
         }
 
         public bool AddCourse(Course course)
@@ -31,6 +39,7 @@ namespace Book_Management.util
             else
             {
                 lstCourse.Add(course.Id, course);
+                SaveCourseToFile();
                 return true;
             }
 
@@ -46,9 +55,10 @@ namespace Book_Management.util
             }
             else
             {
-                lstStudent.Add(student.Id, student);
+                lstStudent.Add(student.Id, student);SaveStudentToFile();
                 return true;
             }
+            
 
         }
 
@@ -64,6 +74,7 @@ namespace Book_Management.util
                 if (lstStudent.ContainsKey(studentCourse.StudentId) && lstCourse.ContainsKey(studentCourse.CourseId))
                 {
                     lstStudentCourse.Add(studentCourse.GetHashKey(), studentCourse);
+                    SaveStudentCourseToFile();
                     return true;
                 }
                 else
@@ -73,24 +84,28 @@ namespace Book_Management.util
             }
         }
 
-        public bool DeleteCourse(Course course)
+        public bool DeleteCourse(string id)
         {
-            if (lstCourse.ContainsKey(course.Id))
+            if (lstCourse.ContainsKey(id))
             {
-                lstCourse.Remove(course.Id);
+                lstCourse.Remove(id);
+                SaveCourseToFile();
                 return true;
             }
             return false;
         }
 
-        public bool DeleteStudent(Student student)
+        public bool DeleteStudent(string id)
         {
-            if (lstStudent.ContainsKey(student.Id))
+            if (lstStudent.ContainsKey(id))
             {
-                lstStudent.Remove(student.Id);
+                lstStudent.Remove(id);SaveStudentToFile();
                 return true;
+
             }
+
             return false;
+            
 
         }
 
@@ -100,6 +115,7 @@ namespace Book_Management.util
             if (lstStudentCourse.ContainsKey(studentCourse.GetHashKey()))
             {
                 lstStudentCourse.Remove(studentCourse.GetHashKey());
+                SaveStudentCourseToFile();
                 return true;
             }
             return false;
@@ -111,14 +127,14 @@ namespace Book_Management.util
 
             if (lstCourse.ContainsKey(course.Id))
             {
-                lstCourse[course.Id] = course;
+                lstCourse[course.Id] = course;SaveCourseToFile();
                 return true;
             }
             else
             {
                 throw new CannotUpdateCourseException("Cannot Delete Course " + course.Name);
             }
-
+            
 
         }
 
@@ -127,13 +143,15 @@ namespace Book_Management.util
 
             if (lstStudent.ContainsKey(student.Id))
             {
-                lstStudent[student.Id] = student;
+                lstStudent[student.Id] = student; SaveStudentToFile();
                 return true;
             }
+
             else
             {
                 throw new CannotUpdateStudentException("Cannot Delete Student " + student.LastName);
             }
+
 
         }
 
@@ -143,6 +161,7 @@ namespace Book_Management.util
             if (lstStudentCourse.ContainsKey(studentCourse.GetHashKey()))
             {
                 lstStudentCourse[studentCourse.CourseId] = studentCourse;
+                SaveStudentCourseToFile();
                 return true;
             }
             else
@@ -160,7 +179,7 @@ namespace Book_Management.util
             {
                 output += x.Value.ToString();
             }
-            return output;
+            return  String.IsNullOrEmpty(output) ? "\nStudent Course List is Empty!!\n" : "\n"+output+"\n" ;
 
         }
 
@@ -173,7 +192,7 @@ namespace Book_Management.util
             {
                 output += x.Value.ToString();
             }
-            return output;
+            return String.IsNullOrEmpty(output) ? "\nStudent Course List is Empty!!\n" : "\n" + output + "\n"; ;
 
         }
 
@@ -185,18 +204,102 @@ namespace Book_Management.util
             {
                 output += x.Value.ToString();
             }
-            return output;
+            return String.IsNullOrEmpty(output)?"\nStudent List is Empty!!\n": "\n" + output + "\n";
 
         }
 
-        public int LoadData()
+        public int LoadCourseFromFile()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (Stream stream = File.Open(this.studentFile, FileMode.Open))
+                {
+                    var binFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                    this.lstStudent = (Dictionary<string, Student>)binFormatter.Deserialize(stream);
+                }
+            }catch(FileNotFoundException ex)
+            {
+                this.lstStudent = new Dictionary<string, Student>();
+                return -1;
+            }
+            return this.lstStudent.Count;
+
         }
 
-        public int SaveData()
+        public int LoadStudentCourseFromFile()
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                using (Stream stream = File.Open(this.courseFile, FileMode.Open))
+                {
+                    var binFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                    this.lstCourse = (Dictionary<string, Course>)binFormatter.Deserialize(stream);
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                this.lstCourse = new Dictionary<string, Course>();
+                return -1;
+            }
+            return this.lstCourse.Count;
+        }
+
+        public int LoadStudentFromFile()
+        {
+            try
+            {
+                using (Stream stream = File.Open(this.studentCourseFile, FileMode.Open))
+                {
+                    var binFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                    this.lstStudentCourse = (Dictionary<string, StudentCourse>)binFormatter.Deserialize(stream);
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                this.lstStudentCourse = new Dictionary<string, StudentCourse>();
+                return -1;
+            }
+            return this.lstStudent.Count;
+        }
+
+        public int SaveCourseToFile()
+        {
+            using (Stream stream = File.OpenWrite(courseFile))
+            {
+                var binFrt = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                binFrt.Serialize(stream, this.lstCourse);
+            }
+
+            return lstCourse.Count();        
+        }
+
+        public int SaveStudentCourseToFile()
+        {
+            using (Stream stream = File.OpenWrite(studentFile))
+            {
+                var binFrt = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                binFrt.Serialize(stream, this.lstStudentCourse);
+            }
+
+            return lstStudentCourse.Count();
+        }
+
+        public int SaveStudentToFile()
+        {
+            using (Stream stream = File.OpenWrite(studentFile))
+            {
+                var binFrt = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                binFrt.Serialize(stream, this.lstStudent);
+            }
+
+            return lstStudent.Count();
         }
     }
 }

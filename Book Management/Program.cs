@@ -25,10 +25,13 @@ namespace Book_Management
                 "7. Add Student Course\n" +
                 "8. Edit Student Course\n" +
                 "9. Delete Student Course \n" +
+                "10. Show Student Report\n" +
+                "11. Show Course Report\n" +
+                "12. Show Student Course Report\n" +
                 "0. Exit\n" +
                 "=>>";
-            bool running = true;
-            while (running)
+
+            while (true)
             {
                 int choice = valid.GetInt(menu, 0, 10);
 
@@ -136,9 +139,17 @@ namespace Book_Management
                             Console.WriteLine();
                         }
                         break;
+                    case 10:
+                        Console.WriteLine(manager.GetStudentReport());
+                        break;
+                    case 11:
+                        Console.WriteLine(manager.GetCourseReport());
+                        break;
+                    case 12:
+                        Console.WriteLine(manager.GetStudentCourseReport());
+                        break;
 
                     case 0:
-                        running = false;
                         return;
 
                 }
