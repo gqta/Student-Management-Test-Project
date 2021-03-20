@@ -15,9 +15,9 @@ namespace Student_Unit_Test
     [TestFixture]
      class StudentCourse_TestClass
     {
-
-        [TestCase]
-        public void TC10_TestConstructorStudentCourse(string courseId, string studentId, string term)
+        [TestCase("C0068","HE14688","Java")]
+        [TestCase("","","")]
+        public void TC01_TestConstructorStudentCourse(string courseId, string studentId, string term)
         {
 
             StudentCourse stCourse = new StudentCourse(courseId, studentId, term);
@@ -28,9 +28,9 @@ namespace Student_Unit_Test
 
 
         }
-
-        [TestCase]
-        public void TC11_CourseId_GetterAndSetter(string courseId)
+        [TestCase("C0001")]
+        [TestCase("")]
+        public void TC02_CourseId_GetterAndSetter(string courseId)
         {
             StudentCourse stCourse = new StudentCourse();
             stCourse.CourseId = courseId;
@@ -39,31 +39,38 @@ namespace Student_Unit_Test
 
         }
 
-        [TestCase("C0001")]
+        [TestCase("HE688")]
         [TestCase("")]
-        [TestCase(null)]
-        public void TC12_StudentID_GetterAndSetter(string studentId)
+        public void TC03_StudentID_GetterAndSetter(string studentId)
         {
             StudentCourse stCourse = new StudentCourse();
             stCourse.StudentId = studentId;
 
-            Assert.AreEqual(stCourse.CourseId, courseId);
+            Assert.AreEqual(stCourse.StudentId, studentId);
 
         }
 
         [TestCase("Math")]
         [TestCase("")]
-        [TestCase(null)]
-        [TestCase]
-        public void TC11_CourseId_etterAndSetter(string courseId)
+        public void TC04_CourseId_GetterAndSetter(string term)
         {
             StudentCourse stCourse = new StudentCourse();
-            stCourse.CourseId = courseId;
+            stCourse.Term = term;
 
-            Assert.AreEqual(stCourse.CourseId, courseId);
+            Assert.AreEqual(stCourse.Term, term);
 
         }
 
+        [TestCase("C0001", "HE141026", "Fall")]
+        [TestCase("", "", "")]
+        public void TC05_GetHashKey(string courseId, string StudentId, string term)
+        {
+
+            StudentCourse studentCourse = new StudentCourse(courseId, StudentId, term);
+            string expected = String.Format("{0}_{1}_{2}", courseId.ToLower(), StudentId.ToLower(), term.ToLower());
+
+            Assert.AreEqual(expected, studentCourse.GetHashKey());
+        }
 
 
 

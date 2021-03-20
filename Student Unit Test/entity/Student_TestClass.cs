@@ -12,8 +12,8 @@ namespace Student_Unit_Test
     class Student_TestClass
     {
         [TestCase("1", "Tuan","Hung",30,"tuanhung@gmail.com")]
-        [TestCase(null, null, null, null,null)]
-        public void TC04_Constructor(string id, string firstName, string lastName, int age, string email)
+        [TestCase("","","",0,"")]
+        public void TC01_Constructor(string id, string firstName, string lastName, int age, string email)
         {
             Student st = new Student(id, firstName, lastName, age, email);
 
@@ -28,8 +28,7 @@ namespace Student_Unit_Test
 
         [TestCase("1")]
         [TestCase("")]
-        [TestCase(null)]
-        public void TC05_StudentId_GetterAndSetter(string id)
+        public void TC02_StudentId_GetterAndSetter(string id)
         {
             Student st = new Student();
             st.Id = id;
@@ -39,9 +38,7 @@ namespace Student_Unit_Test
         
         [TestCase("Tuan")]
         [TestCase("")]
-        [TestCase(null)]
-
-        public void TC06_StudentFirstName_GetterAndSetter(string fName)
+        public void TC03_StudentFirstName_GetterAndSetter(string fName)
         {
             Student st = new Student();
             st.FirstName = fName;
@@ -52,8 +49,7 @@ namespace Student_Unit_Test
 
         [TestCase("Hung")]
         [TestCase("")]
-        [TestCase(null)]
-        public void TC07_StudentLastName_GetterAndSetter(string lastName)
+        public void TC04_StudentLastName_GetterAndSetter(string lastName)
         {
             Student st = new Student();
             st.LastName = lastName;
@@ -63,8 +59,9 @@ namespace Student_Unit_Test
 
 
         [TestCase(30)]
-        [TestCase(null)]
-        public void TC08_StudentAge_GetterAndSetter(int age)
+        [TestCase(0)]
+        [TestCase(-5)]
+        public void TC05_StudentAge_GetterAndSetter(int age)
         {
             Student st = new Student();
             st.Age = age;
@@ -74,13 +71,28 @@ namespace Student_Unit_Test
 
         [TestCase("TuanHung@gmail.com")]
         [TestCase("")]
-        [TestCase(null)]
-        public void TC09_StudentEmail_GetterAndSetter(string email)
+        public void TC06_StudentEmail_GetterAndSetter(string email)
         {
             Student st = new Student();
             st.Email = email;
 
             Assert.AreEqual(st.Email, email);
+        }
+        [TestCase("1", "Tuan", "Hung", 30, "tuanhung@gmail.com")]
+        [TestCase("", "", "", 0, "")]
+        public void TC07_ToString(string id, string firstName, string lastName, int age, string email)
+        {
+            Student st = new Student(id, firstName, lastName, age, email);
+
+            string expected = "\n----------" + id + "---------\n" +
+                "Id: " + id + "\n" +
+                "First Name: " + firstName + "\n" +
+                "Last Name: " + lastName + "\n" +
+                "Age: " + age.ToString() + "\n" +
+                "Email: " + email;
+
+            Assert.AreEqual(st.ToString(), expected);
+
         }
 
 
