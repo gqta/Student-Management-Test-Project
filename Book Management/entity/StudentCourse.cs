@@ -7,11 +7,16 @@ using System.Threading.Tasks;
 namespace Book_Management.entity
 {
     [Serializable]
-    class StudentCourse
+     public class StudentCourse
     {
         private string courseId;
         private string studentId;
         private string term;
+
+        public StudentCourse()
+        {
+
+        }
 
         public StudentCourse(string courseId, string studentId, string term)
         {
