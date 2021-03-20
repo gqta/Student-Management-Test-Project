@@ -40,7 +40,7 @@ namespace Book_Management
                     case 1:
                         try
                         {
-                            manager.AddStudent(GetStudent());
+                            manager.AddStudent(valid.GetStudent());
                         }
                         catch
                         {
@@ -52,7 +52,7 @@ namespace Book_Management
                     case 2:
                         try
                         {
-                            manager.EditStudent(GetStudent());
+                            manager.EditStudent(valid.GetStudent());
                         }
                         catch
                         {
@@ -63,7 +63,7 @@ namespace Book_Management
                     case 3:
                         try
                         {
-                            manager.DeleteCourse(valid.GetString("Student Id: "));
+                            manager.DeleteStudent(valid.GetString("Student Id: "));
                         }
                         catch
                         {
@@ -74,7 +74,7 @@ namespace Book_Management
                     case 4:
                         try
                         {
-                            manager.AddCourse(GetCourse());
+                            manager.AddCourse(valid.GetCourse());
                         }
                         catch
                         {
@@ -85,7 +85,7 @@ namespace Book_Management
                     case 5:
                         try
                         {
-                            manager.EditCourse(GetCourse());
+                            manager.EditCourse(valid.GetCourse());
                         }
                         catch
                         {
@@ -108,7 +108,7 @@ namespace Book_Management
                     case 7:
                         try
                         {
-                            manager.AddStudentCourse(GetStudentCourse());
+                            manager.AddStudentCourse(valid.GetStudentCourse());
                         }
                         catch
                         {
@@ -120,7 +120,7 @@ namespace Book_Management
                     case 8:
                         try
                         {
-                            manager.EditStudentCourse(GetStudentCourse());
+                            manager.EditStudentCourse(valid.GetStudentCourse());
                         }
                         catch
                         {
@@ -132,7 +132,7 @@ namespace Book_Management
                     case 9:
                         try
                         {
-                            manager.DeleteStudentCourse(GetStudentCourse());
+                            manager.DeleteStudentCourse(valid.GetStudentCourse());
                         }
                         catch
                         {
@@ -157,30 +157,7 @@ namespace Book_Management
             }
         }
 
-        public static Student GetStudent()
-        {
-            string id = valid.GetString("Id: ");
-            string firstName = valid.GetString("First Name: ");
-            string lastName = valid.GetString("Last Name: ");
-            int age = valid.GetInt("Age: ", 6, 100);
-            string email = valid.GetString("Email: ");
-            return new Student(id, firstName, lastName, age, email);
-        }
-
-        public static Course GetCourse()
-        {
-            string id = valid.GetString("Id: ");
-            string name = valid.GetString("Name: ");
-            return new Course(id, name);
-        }
-
-        public static StudentCourse GetStudentCourse()
-        {
-            string studentId = valid.GetString("Student Id: ");
-            string coursetId = valid.GetString("Course Id: ");
-            string term = valid.GetString("Term: ");
-            return new StudentCourse(coursetId, studentId, term);
-        }
+        
 
 
 

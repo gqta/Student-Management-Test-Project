@@ -72,10 +72,19 @@ namespace Student_Unit_Test.util
 
 
         [TestCase("1")]
-        public void TC_04_DeleteCourse(string courseId)
+        public void TC_04_DeleteCourse_ReturnTrue(string courseId)
         {
             IManager manager = new Manager();
+            manager.AddCourse(new Course(courseId, ""));
             Assert.AreEqual(true, manager.DeleteCourse(courseId));
+        }
+
+        [TestCase("1")]
+        public void TC_04_DeleteCourse_ReturnFalse(string courseId)
+        {
+            IManager manager = new Manager();
+            
+            Assert.AreEqual(false, manager.DeleteCourse(courseId));
         }
     }
 }

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Book_Management.entity;
+using System;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Book_Management.util
 {
     public class Validation
     {
-        public int GetInt(string mgs, int min, int max)
+        public virtual int GetInt(string mgs, int min, int max)
         {
+
+            min = Math.Min(min, max);
+            max = Math.Max(min, max);
             while (true)
             {
                 Console.Write(mgs);
@@ -30,7 +30,7 @@ namespace Book_Management.util
             }
         }
 
-        public string GetString(string mgs)
+        public virtual string GetString(string mgs)
         {
             while (true)
             {
@@ -47,6 +47,31 @@ namespace Book_Management.util
                     Console.WriteLine("Input must be an string!");
                 }
             }
+        }
+
+        public virtual  Student GetStudent()
+        {
+            string id = GetString("Id: ");
+            string firstName = GetString("First Name: ");
+            string lastName = GetString("Last Name: ");
+            int age = GetInt("Age: ", 6, 100);
+            string email = GetString("Email: ");
+            return new Student(id, firstName, lastName, age, email);
+        }
+
+        public virtual Course GetCourse()
+        {
+            string id = GetString("Id: ");
+            string name = GetString("Name: ");
+            return new Course(id, name);
+        }
+
+        public virtual  StudentCourse GetStudentCourse()
+        {
+            string studentId =  GetString("Student Id: ");
+            string coursetId = GetString("Course Id: ");
+            string term = GetString("Term: ");
+            return new StudentCourse(coursetId, studentId, term);
         }
     }
 }
