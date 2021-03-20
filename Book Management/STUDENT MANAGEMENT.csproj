@@ -46,6 +46,7 @@
     <Compile Include="entity\Course.cs" />
     <Compile Include="entity\Student.cs" />
     <Compile Include="entity\StudentCourse.cs" />
+    <Compile Include="ExceptionManagement\ContainKeyException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="util\IManager.cs" />

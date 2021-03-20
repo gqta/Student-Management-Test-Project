@@ -39,13 +39,13 @@ namespace Book_Management.util
         bool EditStudentCourse(StudentCourse studentCourse);
 
         // if id exsited -> delete and return else throw ex;
-        bool DeleteStudent(string id);
+        bool DeleteStudent(Student student);
 
 
-        bool DeleteCourse(string id);
+        bool DeleteCourse(Course course);
 
 
-        bool DeleteStudentCourse(string key);
+        bool DeleteStudentCourse(StudentCourse studentCourse);
 
 
         string GetStudentCourseReport();
